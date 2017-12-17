@@ -42,14 +42,11 @@ export default class App extends Component {
   }
 
   scaleCanvas (canvas) {
-    let ctx = canvas.getContext('2d')
-
     let ratio = window.devicePixelRatio || 1
     if (!this.canvasScaled) {
       this.canvasScaled = true
-      canvas.width *= ratio
-      canvas.height *= ratio
-      ctx.scale(ratio, ratio)
+      canvas.width /= ratio
+      canvas.height /= ratio
     }
   }
 
@@ -84,7 +81,7 @@ export default class App extends Component {
     const clipping = (this.props.volume * this.boost) > (1 - this.percentageWarningArea)
 
     ctx.beginPath()
-    ctx.arc(x, y - radius / 1.3, 16, startAngle, endAngle, false)
+    ctx.arc(x, y - radius / 1.3, radius / 30, startAngle, endAngle, false)
     ctx.fillStyle = clipping ? '#ff0000' : '#f0f0f0'
     ctx.fill()
   }
