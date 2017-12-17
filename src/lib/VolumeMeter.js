@@ -2,17 +2,17 @@
 
 export default class VolumeMeter {
   constructor () {
-    this.volume = 0.0         // volume level at this time instant
-    this.smoothedVolume = 0.0 // volume level with smoothing to make it appear more analog
-    this.script = null        // handle to registered script processor used for cleanup
-    this.mic = null           // handle to mic used for cleanup
+    this.volume = 0.0         // Volume level at this time instant.
+    this.smoothedVolume = 0.0 // Volume level at this time instant with smoothing to simulate an analog gauge.
+    this.script = null        // Handle to registered script processor used for cleanup.
+    this.mic = null           // Handle to mic used for cleanup.
   }
 
   init (stream) {
     const bufferSize = 256
     const nInputChannels = 1
     const nOutputChannels = 1
-    const smoothingPercentage = 0.03
+    const smoothingPercentage = 0.03 // How much of the current value to mix in with the moving average when smoothing.
 
     let context
 
