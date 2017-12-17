@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import './VuMeter.css'
 
 const PI = 3.141596
 
@@ -10,6 +9,7 @@ export default class App extends Component {
     this.canvasRef = null             // handle to Canvas used to get access to drawing context
     this.boost = 3                    // input volume boost
     this.percentageWarningArea = 0.25 // percentage of the top end volume range to consider too loud
+    this.canvasScaled = false         // whether or not the canvas has been scaled according to device pixel ratio
   }
 
   componentDidMount () {
@@ -26,11 +26,12 @@ export default class App extends Component {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 
     const x = canvas.width / 2    // center of the gauge in canvas x-axis
-    const y = canvas.height * 2.1 // center of the gauge in canvas y-axis
+    const y = canvas.height * 1.7 // center of the gauge in canvas y-axis
     const radius = canvas.width   // radius of the gauge in canvas pixels
     const startAngle = PI + 1.2   // start angle of the gauge in radians
     const endAngle = 2 * PI - 1.2 // end angle of the gauge in radians
 
+    this.scaleCanvas(canvas)
     this.renderScale(canvas, x, y, radius, startAngle, endAngle)
     this.renderWarningLevel(canvas, x, y, radius, startAngle, endAngle)
     // A warning light turns on when the audio is too loud
@@ -38,6 +39,18 @@ export default class App extends Component {
     this.renderNeedle(canvas, x, y, radius, startAngle, endAngle)
     // A shield covers the bottom of the gauge to make it look more like a real analog dial
     this.renderNeedleShield(canvas, x, y, radius)
+  }
+
+  scaleCanvas (canvas) {
+    let ctx = canvas.getContext('2d')
+
+    let ratio = window.devicePixelRatio || 1
+    if (!this.canvasScaled) {
+      this.canvasScaled = true
+      canvas.width *= ratio
+      canvas.height *= ratio
+      ctx.scale(ratio, ratio)
+    }
   }
 
   renderScale (canvas, x, y, radius, startAngle, endAngle) {
@@ -71,7 +84,7 @@ export default class App extends Component {
     const clipping = (this.props.volume * this.boost) > (1 - this.percentageWarningArea)
 
     ctx.beginPath()
-    ctx.arc(x, y - radius / 1.3, 4, startAngle, endAngle, false)
+    ctx.arc(x, y - radius / 1.3, 16, startAngle, endAngle, false)
     ctx.fillStyle = clipping ? '#ff0000' : '#f0f0f0'
     ctx.fill()
   }
@@ -106,7 +119,7 @@ export default class App extends Component {
 
   render () {
     return (
-      <canvas ref={c => { this.canvasRef = c }} />
+      <canvas ref={c => { this.canvasRef = c }} height={600} width={800} />
     )
   }
 }
