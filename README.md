@@ -6,5 +6,11 @@ This project implements a simple analog like VU meter rendered with Canvas and r
 
 ## Install and Run
 
-yarn install
-yarn start
+* yarn install
+* yarn start
+
+## Screenshots
+
+![low volume](https://raw.githubusercontent.com/tuomasritola/vume/master/public/screenshots/low_volume.png "Low volume")
+
+![high volume](https://raw.githubusercontent.com/tuomasritola/vume/master/public/screenshots/high_volume.png "High volume")
