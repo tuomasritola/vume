@@ -28,13 +28,15 @@ export default class App extends Component {
     const x = canvas.width / 2    // center of the gauge in canvas x-axis
     const y = canvas.height * 2.1 // center of the gauge in canvas y-axis
     const radius = canvas.width   // radius of the gauge in canvas pixels
-    const startAngle = PI + 1.2     // start angle of the gauge in radians
-    const endAngle = 2 * PI - 1.2     // end angle of the gauge in radians
+    const startAngle = PI + 1.2   // start angle of the gauge in radians
+    const endAngle = 2 * PI - 1.2 // end angle of the gauge in radians
 
     this.renderScale(canvas, x, y, radius, startAngle, endAngle)
     this.renderWarningLevel(canvas, x, y, radius, startAngle, endAngle)
+    // A warning light turns on when the audio is too loud
     this.renderWarningLight(canvas, x, y, radius)
     this.renderNeedle(canvas, x, y, radius, startAngle, endAngle)
+    // A shield covers the bottom of the gauge to make it look more like a real analog dial
     this.renderNeedleShield(canvas, x, y, radius)
   }
 
@@ -61,7 +63,6 @@ export default class App extends Component {
     ctx.stroke()
   }
 
-  // The warning light turns on when audio is too loud
   renderWarningLight (canvas, x, y, radius) {
     const ctx = canvas.getContext('2d')
 
@@ -91,7 +92,6 @@ export default class App extends Component {
     ctx.stroke()
   }
 
-  // The needle shield covers the bottom of the gauge to make it look more like a real analog dial
   renderNeedleShield (canvas, x, y, radius) {
     const ctx = canvas.getContext('2d')
 
