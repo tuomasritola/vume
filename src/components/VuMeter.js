@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './VuMeter.css'
 
 const PI = 3.141596
 
