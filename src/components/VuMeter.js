@@ -91,8 +91,8 @@ export default class App extends Component {
 
     const volume = this.props.volume * this.boost
     const angle = Math.min(volume * (endAngle - startAngle) + startAngle, endAngle)
-    const needleTipX = x + radius * Math.cos(angle)
-    const needleTipY = y + radius * Math.sin(angle)
+    const needleTipX = x + radius * 0.97 * Math.cos(angle)
+    const needleTipY = y + radius * 0.97 * Math.sin(angle)
 
     ctx.beginPath()
     ctx.moveTo(needleTipX, needleTipY)
