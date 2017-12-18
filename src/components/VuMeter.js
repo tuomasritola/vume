@@ -48,7 +48,7 @@ export default class App extends Component {
     }
     this.canvasScaled = true
 
-    let ratio = window.devicePixelRatio || 1
+    const ratio = window.devicePixelRatio || 1
     canvas.width /= ratio
     canvas.height /= ratio
   }

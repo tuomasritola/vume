@@ -6,7 +6,7 @@ import registerServiceWorker from './registerServiceWorker'
 
 import { startApp } from './setup'
 
-let appState = {
+const appState = {
   volume: 0.0
 }
 

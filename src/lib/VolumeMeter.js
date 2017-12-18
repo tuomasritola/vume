@@ -26,7 +26,7 @@ export default class VolumeMeter {
     this.script = context.createScriptProcessor(bufferSize, nInputChannels, nOutputChannels)
 
     this.script.onaudioprocess = (event) => {
-      let input = event.inputBuffer.getChannelData(0)
+      const input = event.inputBuffer.getChannelData(0)
       let sum = 0.0
       for (let i = 0; i < input.length; i++) {
         sum += input[i] * input[i]

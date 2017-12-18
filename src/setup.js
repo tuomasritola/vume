@@ -15,6 +15,7 @@ function handleSuccess (stream, appState, renderAppState) {
     renderAppState({
       volume: volumeMeter.sampleSmoothedVolume()
     })
+
     window.requestAnimationFrame(step)
   }
 
