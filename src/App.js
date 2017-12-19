@@ -11,7 +11,7 @@ class App extends Component {
           <h1>VU Meter</h1>
         </header>
         <section>
-          <VuMeter volume={this.props.volume} />
+          <VuMeter volume={this.props.volume} boost={3} />
         </section>
       </article>
     )

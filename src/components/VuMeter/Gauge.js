@@ -5,7 +5,7 @@ export default class Gauge {
     this.canvas = canvasRef                      // Handle to Canvas used to get access to drawing context.
     this.canvasScaled = false                    // Whether or not the canvas has been scaled according to device pixel ratio.
     this.percentageWarningArea = 0.25            // Percentage of the top end volume range to consider too loud.
-    this.ctx = this.canvas.getContext('2d')      // Canvas drawing context
+    this.ctx = this.canvas.getContext('2d')      // Canvas drawing context.
     this.x = this.canvas.width / 2               // Center of the gauge in canvas x-axis.
     this.y = this.canvas.height * 1.7            // Center of the gauge in canvas y-axis.
     this.radius = this.canvas.width              // Radius of the gauge in canvas pixels.
